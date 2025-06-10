@@ -40,6 +40,11 @@ app.delete("/users/:email", checkAdmin, (req, res) => {
   res.json({ message: "User deleted" });
 });
 
+app.get("/me", (req, res) => {
+  const role = req.headers["x-user-role"] || "guest";
+  res.json({ role });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
